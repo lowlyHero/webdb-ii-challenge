@@ -36,3 +36,5 @@ router.get('/zoos', (req, res) => {
   router.delete('/zoos/:id', (req, res) => {
 
   });
+
+  module.exports = router;
