@@ -1,12 +1,11 @@
 const express = require('express');
 
+const Zoos = require('./zoosModel');
 const router = express.Router();
-
-const Zoos = require('./zoos-model');
 
 // ============ GET ================
 
-router.get('/', (req, res) => {
+router.get('/zoos', (req, res) => {
     Zoos.find()
     .then(zoos => {
         res.status(200).json(zoos);
@@ -15,10 +14,6 @@ router.get('/', (req, res) => {
         res.status(500).json(error);
     })
 });
-
-router.get('/zoos', (req, res) => {
-
-  });
   
   router.get('/zoos/:id', (req, res) => {
 
