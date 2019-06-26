@@ -26,7 +26,18 @@ router.get('/zoos', (req, res) => {
   // ============ POST ===============
   
   router.post('/zoos', (req, res) => {
-
+    if(!req.body.name) {
+        res.status(400).json({
+            message: 'Please enter the name of a zoo.'
+        })
+    } else {
+        let newZoo = {
+            name: req.body.name
+        };
+        let createdZooId = Zoos.add(newZoo);
+        let createdZoo = Zoos.findById(createdZooId.id);
+        res.status(201).json(createdZoo);
+    }
   });
   
   // ============ PUT ===============

@@ -12,8 +12,8 @@ const db = knex(knexConfig);
 
 module.exports = {
   find,
-  findById
-//   add,
+  findById,
+  add
 //   update,
 //   remove,
 };
@@ -28,18 +28,18 @@ function findById(id) {
     .first();
 }
 
-// function add(role) {
-//   return db('roles')
-//     .insert(role, 'id')
-//     .then(ids => {
-//       const [id] = ids;
+function add(zoos) {
+  return db('name')
+    .insert(zoos, 'id')
+    .then(ids => {
+      const [id] = ids;
 
-//       return findById(id);
-//     });
-// }
+      return findById(id);
+    });
+}
 
 // function update(id, changes) {
-//   return db('roles')
+//   return db('zoos')
 //     .where({ id })
 //     .update(changes)
 //     .then(count => {
@@ -52,13 +52,13 @@ function findById(id) {
 // }
 
 // function remove(id) {
-//   return findById(id).then(role => {
-//     if (role) {
-//       return db('roles')
+//   return findById(id).then(zoo => {
+//     if (zoo) {
+//       return db('zoos')
 //         .where({ id })
 //         .del()
 //         .then(() => {
-//           return role;
+//           return zoo;
 //         });
 //     } else {
 //       return null;
