@@ -5,10 +5,10 @@ const zoosRouter = require('../zoos/zoosRouter');
 
 const server = express();
 
-server.use(express.json());
 server.use(helmet());
+server.use(express.json());
 
-server.use('/zoos', zoosRouter);
+server.use('/api/zoos', zoosRouter);
 
 server.get('/', (req, res) => {
     res.send('<h1>Zoos</h1>');

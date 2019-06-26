@@ -1,7 +1,5 @@
-const express = require('express');
-
 const Zoos = require('./zoosModel');
-const router = express.Router();
+const router = require('express').Router();
 
 // ============ GET ================
 
@@ -16,8 +14,14 @@ router.get('/zoos', (req, res) => {
 });
   
   router.get('/zoos/:id', (req, res) => {
-
-  });
+    Zoos.findById(req.params.id)
+    .then(zoos => {
+        res.status(200).json(zoos);
+    })
+    .catch(error => {
+        res.status(500).json(error);
+    })
+});
   
   // ============ POST ===============
   
