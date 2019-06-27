@@ -1,5 +1,6 @@
 const knex = require('knex');
 
+
 const knexConfig = {
   client: 'sqlite3', 
   useNullAsDefault: true, 
@@ -19,17 +20,17 @@ module.exports = {
 };
 
 function find() {
-  return db('name');
+  return db('zoos');
 }
 
 function findById(id) {
-  return db('name')
+  return db('zoos')
     .where({ id })
     .first();
 }
 
 function add(zoos) {
-  return db('name')
+  return db('zoos')
     .insert(zoos, 'id')
     .then(ids => {
       const [id] = ids;

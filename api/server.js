@@ -8,10 +8,6 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
-server.use('/api/zoos', zoosRouter);
-
-server.get('/', (req, res) => {
-    res.send('<h1>Zoos</h1>');
-});
+server.use('/zoos', zoosRouter);
 
 module.exports = server;
