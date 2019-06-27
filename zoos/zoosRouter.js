@@ -40,11 +40,9 @@ router.get('/', (req, res) => {
 //   });
 
 router.post('/', (req, res) => {
-    // add a role to the database
-    // db('roles').insert(req.body).then([id] => {
     Zoos.add(req.body)
-      .then(role => {
-        res.status(200).json(zoos);
+      .then(zoo => {
+        res.status(200).json(zoo);
       })
       .catch(error => {
         res.status(500).json(error)
