@@ -15,7 +15,7 @@ module.exports = {
   find,
   findById,
   add,
-//   update,
+  update,
   remove
 };
 
@@ -39,18 +39,18 @@ function add(zoos) {
     });
 }
 
-// function update(id, changes) {
-//   return db('zoos')
-//     .where({ id })
-//     .update(changes)
-//     .then(count => {
-//       if (count > 0) {
-//         return findById(id);
-//       } else {
-//         return null;
-//       }
-//     });
-// }
+function update(id, changes) {
+  return db('zoos')
+    .where({ id })
+    .update(changes)
+    .then(count => {
+      if (count > 0) {
+        return findById(id);
+      } else {
+        return null;
+      }
+    });
+}
 
 function remove(id) {
   return findById(id).then(zoo => {

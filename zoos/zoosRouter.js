@@ -38,7 +38,21 @@ router.post('/', (req, res) => {
   // ============ PUT ===============
   
   router.put('/:id', (req, res) => {
-9
+    Zoos.update(req.params.id, req.body)
+    .then(zoo => {
+        if(zoo) {
+            res.status(200).json(zoo)
+        } else {
+            res.status(404).json({
+                message: 'Zoo not found.'
+            })
+        }
+    })
+    .catch(error => {
+        res.status(500).json({
+            message: 'The Zoo could not be updated. Please try again.', error
+        })
+    })
   });
   
   // ============ DELETE ===============
