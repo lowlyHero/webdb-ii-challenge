@@ -14,9 +14,9 @@ const db = knex(knexConfig);
 module.exports = {
   find,
   findById,
-  add
+  add,
 //   update,
-//   remove,
+  remove
 };
 
 function find() {
@@ -52,17 +52,17 @@ function add(zoos) {
 //     });
 // }
 
-// function remove(id) {
-//   return findById(id).then(zoo => {
-//     if (zoo) {
-//       return db('zoos')
-//         .where({ id })
-//         .del()
-//         .then(() => {
-//           return zoo;
-//         });
-//     } else {
-//       return null;
-//     }
-//   });
-// }
+function remove(id) {
+  return findById(id).then(zoo => {
+    if (zoo) {
+      return db('zoos')
+        .where({ id })
+        .del()
+        .then(() => {
+          return zoo;
+        });
+    } else {
+      return null;
+    }
+  });
+}

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Zoos = require('./zoosModel');
+
 // ============ GET ================
 
 router.get('/', (req, res) => {
@@ -23,21 +24,6 @@ router.get('/', (req, res) => {
 });
   
   // ============ POST ===============
-  
-//   router.post('/', (req, res) => {
-//     if(!req.body.name) {
-//         res.status(400).json({
-//             message: 'Please enter the name of a zoo.'
-//         })
-//     } else {
-//         let newZoo = {
-//             name: req.body.name
-//         };
-//         let createdZooId = Zoos.add(newZoo);
-//         let createdZoo = Zoos.findById(createdZooId.id);
-//         res.status(201).json(createdZoo);
-//     }
-//   });
 
 router.post('/', (req, res) => {
     Zoos.add(req.body)
@@ -52,13 +38,21 @@ router.post('/', (req, res) => {
   // ============ PUT ===============
   
   router.put('/:id', (req, res) => {
-
+9
   });
   
   // ============ DELETE ===============
   
   router.delete('/:id', (req, res) => {
-
-  });
+    Zoos.remove(req.params.id)
+    .then(zoo => {
+      res.status(200).json({
+          message: 'The Zoo has been successfully removed.', zoo
+      });
+    })
+    .catch(error => {
+      res.status(500).json(error)
+    })
+});
 
   module.exports = router;
