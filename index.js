@@ -1,14 +1,8 @@
-const express = require('express');
-const helmet = require('helmet');
+require('dotenv').config();
+const server = require('./api/server');
 
-const server = express();
+const port = process.env.PORT || 5000;
 
-server.use(express.json());
-server.use(helmet());
-
-// endpoints here
-
-const port = 3300;
-server.listen(port, function() {
+server.listen(port, () => {
   console.log(`\n=== Web API Listening on http://localhost:${port} ===\n`);
 });
