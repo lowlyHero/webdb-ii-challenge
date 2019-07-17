@@ -10,7 +10,7 @@ server.use(helmet());
 server.get('/', async (req, res) => {
   try {
     const zoos = await db.find(req.query);
-    res.status(200).json(zoos)
+    res.status(200).json(zoos);
   } catch(error) {
     console.log(error);
     res.status(500).json({ message: 'Internal Error. Cannot retrieve Zoos.' });
@@ -20,9 +20,10 @@ server.get('/', async (req, res) => {
 server.get('/:id', async (req, res) => {
   try {
     const zoosId = await db.findById(req.params.id); 
-    res.status(200).json(zoosId)
+    res.status(200).json(zoosId);
   } catch(error) {
     console.log(error);
+    res.status(500).json({ message: 'Internal Error. Unable to get Zoo' })
   }
 });
 
@@ -64,10 +65,11 @@ server.delete('/:id', async (req, res) => {
     }
   } catch(error) {
     console.log(error);
+    res.status(500).json({ message: 'Internal Error. Unable to delete Zoo' });
   }
 });
 
 const port = 3300;
 server.listen(port, function() {
-  console.log(`\n=== Listening on http://localhost:${port} ===\n`);
+  console.log(`\n=== Listening on PORT ${port} ===\n`);
 });
