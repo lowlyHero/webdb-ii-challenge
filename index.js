@@ -19,8 +19,12 @@ server.get('/', async (req, res) => {
 
 server.get('/:id', async (req, res) => {
   try {
-    const zoosId = await db.findById(req.params.id); 
-    res.status(200).json(zoosId);
+    if(req.params.id) {
+      const zoosId = await db.findById(req.params.id); 
+      res.status(200).json(zoosId);
+    } else {
+      res.status(404).json({ message: 'That zoo doesn\'t exist, silly goose.' });
+    }
   } catch(error) {
     console.log(error);
     res.status(500).json({ message: 'Internal Error. Unable to get Zoo' })
